@@ -10,7 +10,7 @@ const TodoInput = () => {
   }
 
   return (
-    <form className="todo-input">
+    <form className="todo-form">
       <label htmlFor="todo-input">Add</label>
       <input onInput={handleOnInput} type="text" id="todo-input" />
       <input onClick={event => addTodo(event, todoItem)} type="submit" value="Add" />

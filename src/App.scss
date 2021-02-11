@@ -12,6 +12,11 @@
   font-size: 2rem;
 }
 
+.todo-form {
+  display: flex;
+  flex-direction: column;
+}
+
 .done {
   background-color: greenyellow;
   text-decoration: line-through;
