@@ -1,14 +1,12 @@
-import {useContext} from 'react'
-import {TodoContext} from '../context/todoContext'
+import {useSelector, useDispatch} from 'react-redux'
+import {markDone} from '../reducers/todoReducer'
 
 const TodoList = () => {
-  const {state: {todos}, dispatch} = useContext(TodoContext)
+  const dispatch = useDispatch()
+  const todos = useSelector(state => state.todos)
 
   const markTodoDone = id => {
-    dispatch({
-      type: 'MARK_DONE',
-      payload: id
-    })
+    dispatch(markDone(id))
   }
 
   return (

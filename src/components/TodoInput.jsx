@@ -1,8 +1,9 @@
-import {useContext, useState} from 'react'
-import {TodoContext} from '../context/todoContext'
+import {useState} from 'react'
+import {useDispatch} from 'react-redux'
+import {createTodo} from '../reducers/todoReducer'
 
 const TodoInput = () => {
-  const {dispatch} = useContext(TodoContext)
+  const dispatch = useDispatch()
   const [todoItem, setTodoItem] = useState()
 
   const handleOnInput = event => {
@@ -11,10 +12,7 @@ const TodoInput = () => {
 
   const addTodo = event => {
     event.preventDefault()
-    dispatch({
-      type: 'ADD_TODO',
-      payload: todoItem
-    })
+    dispatch(createTodo(todoItem))
   }
 
   return (

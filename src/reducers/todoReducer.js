@@ -1,6 +1,16 @@
-import {createContext, useReducer} from 'react'
+export const createTodo = todoItem => {
+  return {
+    type: 'ADD_TODO',
+    payload: todoItem
+  }
+}
 
-export const TodoContext = createContext()
+export const markDone = id => {
+  return {
+    type: 'MARK_DONE',
+    payload: id
+  }
+}
 
 const initialState = {
   todos: [
@@ -9,7 +19,7 @@ const initialState = {
   ]
 }
 
-const reducer = (state, action) => {
+const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TODO':
       if (!action.payload) {
@@ -25,19 +35,9 @@ const reducer = (state, action) => {
       return {
         todos: newTodo.sort((a, b) => a.id - b.id)
       }
-    default:
-      throw new Error()
+      default:
+        return state
   }
 }
 
-const TodoProvider = ({children}) => {
-
-  const [state, dispatch] = useReducer(reducer, initialState)
-  return (
-    <TodoContext.Provider value={{state, dispatch}}>
-      {children}
-    </TodoContext.Provider>
-  )
-}
-
-export default TodoProvider
+export default todoReducer
