@@ -1,3 +1,10 @@
+export const initTodos = todos => {
+  return {
+    type: 'INIT_TODOS',
+    payload: todos
+  }
+}
+
 export const createTodo = todoItem => {
   return {
     type: 'ADD_TODO',
@@ -21,6 +28,10 @@ const initialState = {
 
 const todoReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'INIT_TODOS':
+      return {
+        todos: action.payload
+      }
     case 'ADD_TODO':
       if (!action.payload) {
         return {todos: state.todos}

@@ -1,5 +1,7 @@
+import {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {markDone} from '../reducers/todoReducer'
+import {markDone, initTodos} from '../reducers/todoReducer'
+import {getTodos} from '../services/todos'
 
 const TodoList = () => {
   const dispatch = useDispatch()
@@ -8,6 +10,14 @@ const TodoList = () => {
   const markTodoDone = id => {
     dispatch(markDone(id))
   }
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const todos = await getTodos()
+      dispatch(initTodos(todos))
+    }
+    fetchTodos()
+  }, [dispatch])
 
   return (
     <ol>
